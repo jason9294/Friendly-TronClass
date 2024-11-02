@@ -21,7 +21,7 @@
 
 1. 安裝 [Tampermonkey](https://www.tampermonkey.net/)
 2. 安裝腳本：
-   - 點擊 [此處](https://github.com/你的帳號/你的repo/raw/main/你的腳本.user.js) 安裝腳本
+   - 點擊 [此處](https://github.com/jason9294/Friendly-TronClass/raw/main/friendly-trinclass.user.js) 安裝腳本
 
 ## 使用方法
 
