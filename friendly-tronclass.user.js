@@ -24,9 +24,10 @@
 
   const isOpenDevToolKey = (e) => (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")));
 
-
+  /**
+   * 防止禁用複製
+   */
   function antiDisableCopy() {
-    // 移除複製保護 status: working
     for (const eventName of ["copy", "cut", "paste"]) {
       document.addEventListener(eventName, (e) => e.stopPropagation(), true);
     }
@@ -41,13 +42,17 @@
     });
   }
 
+  /**
+   * 防止禁用右鍵 ContextMenu
+   */
   function antiDisableCtxMenu() {
-    // 移除右鍵限制 status: working
     document.addEventListener("contextmenu", (e) => e.stopPropagation(), true);
   }
 
+  /**
+   * 防止全螢幕 & 離開視窗限制
+   */
   function antiFullscreenEnforcement() {
-    // 移除全螢幕&視窗限制 status: working
     const events = [
       "fullscreenElement",
       "fullscreenEnabled",
@@ -65,6 +70,9 @@
     });
   }
 
+  /**
+   * 防止禁用開發者工具
+   */
   function antiDisableDevtools() {
     // 反制禁止開啟控制台 status: maybe working
     // HACK 透過覆寫 console.log 來阻止開啟控制台
@@ -81,18 +89,30 @@
     }, true);
   }
 
+  /**
+   * 移除文字選取保護
+   */
   function antiDisableTxtSelection() {
-    // 移除文字選取保護
     document.querySelectorAll("*").forEach((el) => {
       el.style.userSelect = "text"; // 開啟文字選取
     });
   }
 
+  /**
+   *移除考試頁面浮水印 
+   */
   function removeWatermark() {
     window.addEventListener("load", () => {
       document.getElementById("Symbol(water-mark)").style.background = "";
     }, false
     );
+  }
+
+  /**
+   * 允許下載不可下載的檔案
+   */
+  function alwaysAllowDownload() {
+    // TODO
   }
 
   main();
