@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Friendly TronClass
 // @namespace    https://github.com/jason9294
-// @version      0.1
+// @version      0.1.1
 // @description  Counter Anti-Cheat
 // @match        https://eclass.yuntech.edu.tw/course/*
 // @match        https://eclass.yuntech.edu.tw/exam/*
@@ -19,7 +19,7 @@
     antiFullscreenEnforcement();
     antiDisableDevtools();
     antiDisableTxtSelection();
-    removeWatermark();
+    // removeWatermark(); // 太明顯了 先 disable
   }
 
   const isOpenDevToolKey = (e) => (e.key === "F12" || (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")));
