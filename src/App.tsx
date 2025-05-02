@@ -11,7 +11,7 @@ import {
   antiDisableDevtools,
   antiDisableTxtSelection,
   removeWatermark,
-} from "./utils/antiCheat";
+} from "./modules/disableAntiCheat";
 import ButtonInjector from "./components/ButtonInjector";
 import { AppSettings, DEFAULT_SETTINGS } from "./types/settings";
 

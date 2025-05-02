@@ -18,6 +18,6 @@ export interface AppSettings {
 export const DEFAULT_SETTINGS: AppSettings = {
   apiKey: '',
   systemPrompt: '你是一個幫助學生學習的助手，請提供清晰簡潔的解答。',
-  model: 'gpt-4o',
+  model: 'gpt-4.1',
   debugMode: false
 };

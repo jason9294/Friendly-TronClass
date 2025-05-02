@@ -46,12 +46,6 @@ function addMaterialResources(): void {
  * 主函數 - entry point
  */
 function main(): void {
-  // 檢查腳本是否已經運行，避免重複初始化
-  if (document.getElementById("friendly-tronclass-root")) {
-    console.debug("Friendly TronClass 已經在運行中");
-    return;
-  }
-
   // 添加Material Design資源
   addMaterialResources();
 

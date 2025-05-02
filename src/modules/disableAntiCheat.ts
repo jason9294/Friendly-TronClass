@@ -3,7 +3,23 @@
  * 包含處理複製限制、右鍵菜單、全螢幕限制等功能的函數
  */
 
-import { COPY_PASTE_EVENTS, FULLSCREEN_VISIBILITY_EVENTS, isOpenDevToolKey } from './constants';
+
+const FULLSCREEN_VISIBILITY_EVENTS = [
+  "fullscreenElement",
+  "fullscreenEnabled",
+  "mozFullScreenEnabled",
+  "webkitFullscreenEnabled",
+  "msFullscreenEnabled",
+  "webkitIsFullScreen",
+  "visibilitychange",
+  "webkitvisibilitychange",
+  "blur",
+]
+
+const isOpenDevToolKey = (e: KeyboardEvent): boolean => (
+  e.key === "F12" ||
+  (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J"))
+);
 
 /**
  * 防止禁用複製、剪切和貼上功能
@@ -11,7 +27,7 @@ import { COPY_PASTE_EVENTS, FULLSCREEN_VISIBILITY_EVENTS, isOpenDevToolKey } fro
  */
 export function antiDisableCopy(): void {
   // 取消複製、剪切和貼上事件的攔截
-  for (const eventName of COPY_PASTE_EVENTS) {
+  for (const eventName of ["copy", "cut", "paste"]) {
     document.addEventListener(eventName, (e) => e.stopPropagation(), true);
   }
 
@@ -42,13 +58,13 @@ export function antiDisableCtxMenu(): void {
  * 攔截相關事件並阻止傳播
  */
 export function antiFullscreenEnforcement(): void {
-  FULLSCREEN_VISIBILITY_EVENTS.forEach((eventName) => {
+  for (const eventName of FULLSCREEN_VISIBILITY_EVENTS) {
     window.addEventListener(
       eventName,
       (e) => { e.stopImmediatePropagation(); },
-      true
+      true // 使用捕獲階段攔截事件
     );
-  });
+  }
 }
 
 /**
@@ -92,7 +108,9 @@ export function antiDisableDevtools(): void {
 export function antiDisableTxtSelection(): void {
   // 立即應用到當前元素
   document.querySelectorAll("*").forEach((el) => {
-    (el as HTMLElement).style.userSelect = "text";
+    if (el instanceof HTMLElement) { // 確保是 HTMLElement
+      el.style.userSelect = "text";
+    }
   });
 
   // 使用 MutationObserver 監視 DOM 變化，應用到新元素
@@ -134,11 +152,3 @@ export function removeWatermark(): void {
   }
 }
 
-/**
- * 允許下載不可下載的檔案
- * 待實現功能
- */
-export function alwaysAllowDownload(): void {
-  // TODO: 實現允許下載被限制的檔案的功能
-  console.debug("允許下載功能尚未實現");
-}

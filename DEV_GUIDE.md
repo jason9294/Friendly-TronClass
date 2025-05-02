@@ -1,0 +1,7 @@
+- 主要使用 [vite-plugin-monkey](https://github.com/lisonge/vite-plugin-monkey) 來開發
+- 使用 Soild.js 框架
+- 搭配 [UnoCSS](https://unocss.dev/)
+  - 使用 tailwind3 preset 
+  - 使用 'ft-' prefix
+- main.tsx 是程式的進入點，主要流程為在其中的 `main()` 函式。
+- `src/modules` 資料夾中是各個模組的程式碼，主要是將功能拆分成不同的模組，方便維護和擴展。 

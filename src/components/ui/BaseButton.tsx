@@ -1,5 +1,5 @@
 // Button.tsx
-import { JSX, splitProps, createEffect } from "solid-js";
+import { JSX, splitProps, Component } from "solid-js";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -14,7 +14,7 @@ export interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement>
   autoBlur?: boolean; // 新增自動失去焦點的屬性
 }
 
-const Button = (props: ButtonProps) => {
+const Button: Component = (props: ButtonProps) => {
   const [local, others] = splitProps(props, [
     "variant",
     "size",
